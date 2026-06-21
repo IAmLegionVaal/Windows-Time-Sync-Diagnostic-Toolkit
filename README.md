@@ -1,21 +1,20 @@
 # Windows Time Sync Diagnostic Toolkit
 
-A read-only PowerShell toolkit for Windows time synchronization review.
+Created by **Dewald Pretorius**.
 
-## Features
+A PowerShell 5.1 toolkit for Windows time synchronization diagnostics and guarded recovery.
 
-- Windows Time service status
-- Current time source and configuration
-- Domain/workgroup context
-- Time status command output
-- CSV, JSON, TXT, and HTML reports
+## Files
 
-## How to run
+- `Windows_Time_Sync_Diagnostic_Toolkit.ps1` — read-only service, source, configuration, domain, and status reports.
+- `Repair.ps1` — starts Windows Time or requests peer rediscovery and resynchronization with confirmation, evidence, logs, and verification.
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\Windows_Time_Sync_Diagnostic_Toolkit.ps1
+.\Repair.ps1 -Action Diagnose
+.\Repair.ps1 -Action StartService -WhatIf
+.\Repair.ps1 -Action RediscoverAndResync -Confirm
 ```
 
-## Safety
+Repair actions require elevation and do not manually replace domain time sources or write registry configuration. Post-action evidence records the service state and selected time source.
 
-Diagnostic-only. It does not change time sources or synchronization settings.
+Source-reviewed for Windows PowerShell 5.1; not runtime-tested in every domain, workgroup, or virtualized time configuration.
